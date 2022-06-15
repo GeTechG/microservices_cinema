@@ -24,6 +24,7 @@ func Request(r *http.Request, w *http.ResponseWriter, method string, isJson bool
 	}
 	if r.Method != method {
 		(*w).WriteHeader(http.StatusMethodNotAllowed)
+        return
 	}
 	requestFunc()
 }

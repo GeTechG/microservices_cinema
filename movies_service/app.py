@@ -22,3 +22,8 @@ def get_movie_by_uuid():
     if (movie == None):
         return "Invalid uuid", 400
     return jsonify(movie)
+
+@app.route("/v1/get_movies", methods=['GET'])
+def get_movies():
+    movies = movies_db.get_movies()
+    return jsonify(movies)

@@ -1,6 +1,6 @@
 import uuid
 
-movies = {}
+movies = []
 
 def valid_movie(movie):
     not_empty = movie["name"] != None and movie["description"] != None and movie["min_age"] != None
@@ -18,9 +18,13 @@ def new_movie(request_movie):
 def add_new_movie(request_movie):
     if valid_movie(request_movie):
         movie = new_movie(request_movie)
-        movies[movie["id"]] = movie
+        movies.append(movie)
         return movie["id"]
 
+def get_movies():
+    return movies
+
 def get_movie_by_uuid(uuid_movie):
-    if uuid_movie in movies:
-        return movies[uuid_movie]
+    for movie in movies:
+        if movie["id"] == uuid_movie:
+            return movie
